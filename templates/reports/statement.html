@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row ">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title" style="text-align: center;">Full Statement</h3>
+                <div class="table-responsive">
+                    <table class="table" style="color: bisque;">
+                        <thead>
+                            <tr>
+                                <th class="col-1"> S.No. </th>
+                                <th class="col-3"> Particulars </th>
+                                <th class="col-2"> Payment Mode </th>
+                                <th class="col-2"> Debit (Dr.) </th>
+                                <th class="col-2"> Credit (Cr.) </th>
+                                <th class="col-2"> Balance </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in statements %}
+                            <tr>
+                                <td > {{item.date}} </td>
+                                <td> {{item.note|title}} {{item.remarks|title}} </td>
+                                <td> {{item.mode|title}} </td>
+                                
+                                {% if item in debit_items %}
+                                <td> Rs. {{item.amount}} </td>
+                                <td> - </td>
+                                {% else %}
+                                <td> - </td>
+                                <td> Rs. {{item.amount}} </td>
+                                {% endif %}
+
+                                <td> Rs. {{item.balance}} </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

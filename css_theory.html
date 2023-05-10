@@ -1,0 +1,75 @@
+<!-- inline css
+this is a css style that used inside the tags eg
+<p1 style="color: blue;"> Text </p1>
+
+dot is for class
+without dot or html tag name is for tag no need to include dot
+Hash is for id (id must be unique )
+
+
+internal css
+this is a css style that is used before head tag
+<head>
+
+    <style>
+        #id_name:{
+            color: blue,
+            
+        }
+    </style>
+
+</head>
+
+the calling process
+
+<h1 id="id_name"> Demo </h1>
+
+
+external css
+this is a css style that is used as file base. In this method we need to create a new css file.
+The file name is usually style.css
+
+.p1{
+    background: yellow;
+    font-family: Arial
+
+}
+
+table{
+    font-family: arial;
+    border-collapse: collapse;
+}
+
+this css style will apply to all td and th
+td, th {
+    border: 1px solid #0000
+}
+
+this css style will apply to all tr of even table
+tr:nth-child(even)
+
+After creating a file we need to link the newly created file in your html file. 
+It should be above internal css if any.
+
+<link rel="stylesheet" href="style.css">
+
+ -->
+
+
+ <!-- Java Script
+
+ java script is written inside body tag. Usuall the end part of body tag.
+ <body>
+    other contents here
+
+    <script>
+        let x = 5;
+        let y = 2
+
+        sum = x + y
+
+        console.log(sum)
+        console.log('The sum of ${x} and ${y} is ${sum}')
+
+    </script>
+ </body> -->

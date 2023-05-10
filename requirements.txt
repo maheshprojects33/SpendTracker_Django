@@ -1,0 +1,10 @@
+Django==4.2
+Pillow==9.5.0
+
+# for cashflow Model ask to add as a user base
+# in Views.py code are repeated on salary, loan and others
+# Which view shold i use ListView or View
+# Uses of ForeignKey ask
+
+# Payment Mode => cash, bank , phone
+# Income Type => slaary, rent other

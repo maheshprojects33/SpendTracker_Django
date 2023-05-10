@@ -1,0 +1,99 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="row ">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    {{message}}
+                </div>
+                {% endfor %}
+                {% endif %}
+                <h3 class="card-title" style="text-align: center;">Cash Outflow / All Transactions </h3>
+                <div class="table-responsive">
+                    <table class="table" style="color: bisque;">
+                        <thead>
+                            <tr>
+                                <th class="col-1"> Date </th>
+                                <th class="col-3"> Particulars </th>
+                                <th class="col-2"> Amount </th>
+                                <th class="col-2" style="text-align: center;"> Payment To/Mode </th>
+                                <th class="col-2"> Modified On </th>
+                                <th class="col-2" style="text-align: center;"> Actions </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in outflow_items %}
+                            <tr>
+                                <td> {{item.date}} </td>
+
+                                <td> {{item.remarks|title}} </td>
+
+                                <td> Rs. {{item.amount}} </td>
+                                <td style="text-align: center;"> {{item.pay_to|title}} <br><br> {{item.mode|title}}
+                                </td>
+                                <td> {{item.modified_at}} </td>
+
+                                <td style="text-align: center;">
+                                    <a href="{% url 'cash-out-update' item.pk %}" class="btn btn-outline-primary" type="submit">
+                                        <span class="btn-icon-prepend">
+                                            <i class="mdi mdi-eraser"></i>
+                                        </span>
+                                        Edit
+                                    </a>
+                                    <a href="{% url 'cash-out-delete' item.pk %}" class="btn btn-outline-primary" type="submit">
+                                        <span class="btn-icon-prepend">
+                                            <i class="mdi mdi-delete-forever"></i>
+                                        </span>
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <!-- Floating Button-->
+                    <div class="fixed-action-btn btn-outline-link ">
+                        <a href="{% url 'cash-out' %}" class="btn-floating btn-icon-prepend ">
+                            <i class="mdi mdi-plus-circle icon-md"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_css %}
+.fixed-action-btn {
+position: fixed;
+right: 50px;
+bottom: 23px;
+
+}
+
+.fixed-action-btn a.btn-floating {
+width: 100px;
+height: 100px;
+line-height: 56px;
+}
+
+.fixed-action-btn a.btn-floating i {
+font-size: 64px;
+line-height: 56px;
+}
+
+
+{% endblock extra_css %}

@@ -1,0 +1,117 @@
+{% load static %}
+
+<div class="row">
+    <!-- InFlow -->
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+
+                            <h3 class="mb-0">Rs. {{total_cash_in}}</h3>
+                            {% if balance >= 0 %}
+                            <p class="text-success ml-2 mb-0 font-weight-medium">+{{ balance }}</p>
+                            {% else %}
+                            <p class="text-danger ml-2 mb-0 font-weight-medium">{{ balance }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        {% if total_cash_in >= total_cash_out %}
+                        <div class="icon icon-box-success ">
+                            <span class="mdi mdi-arrow-top-right icon-item"></span>
+                        </div>
+                        {% else %}
+                        <div class="icon icon-box-danger">
+                            <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+                        </div>
+
+                        {% endif %}
+                    </div>
+                </div>
+                <h6 class="text-muted font-weight-normal">Total Cash Inflow</h6>
+            </div>
+        </div>
+    </div>
+    <!-- OutFlow -->
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0">Rs. {{total_cash_out}} </h3>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        {% if total_cash_in >= total_cash_out %}
+                        <div class="icon icon-box-success">
+                            <span class="mdi mdi-arrow-top-right icon-item"></span>
+                        </div>
+                        {% else %}
+                        <div class="icon icon-box-danger">
+                            <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <h6 class="text-muted font-weight-normal">Total Cash Outflow</h6>
+            </div>
+        </div>
+    </div>
+    <!-- Total Number-->
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h5 class="font-weight-normal">Total No. of Inflow: <br><span style="color: antiquewhite; font-weight: bold;">{{cash_in_count}}</span></h5>
+                            {% comment %} <h6 class="mb-0">Rs. 12.34</h6> {% endcomment %}
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h5 class="font-weight-normal">Total No. of OutFlow: <br><span style="color: antiquewhite; font-weight: bold;">{{cash_out_count}}</span></h5>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Balance-->
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12" style="display: flex; justify-content: center; align-items: center;">
+                        <div class="d-flex align-items-center align-self-start mx-auto">
+                            {% if balance > 0 %}
+                            <h3 class="mb-0" style="color: lawngreen;">Rs. {{balance}}</h3>
+
+                            {% else %}
+                            <h3 class="mb-0" style="color: red;">Rs. {{balance}}</h3>
+
+                            {% endif %}
+                            {% comment %} <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                            {% endcomment %}
+                        </div>
+                    </div>
+                    {% comment %} <div class="col-3">
+                        <div class="icon icon-box-success ">
+                            <span class="mdi mdi-arrow-top-right icon-item"></span>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+                <h6 class="text-muted font-weight-normal" style="display: flex; justify-content: center; align-items: center;">Your Total Balance</h6>
+                {% if balance >= 0 %}
+                <h5 style="color: limegreen; text-align: center;">Kudos for being mindful of your expenses</h5>
+                {% else %}
+                <h5 style="color: indianred; text-align: center;">Control Your Spending to balance your budget</h5>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

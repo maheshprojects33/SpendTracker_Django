@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="col-12 grid-margin stretch-card">
+    <h1>Delete Your Payment Record?</h1>
+</div>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <form class="forms-sample" method="POST">
+                {% csrf_token %}
+
+                <h4>Are you sure you want to delete this record? This action cannot be undone and removes data from the server.</h4>
+
+                <button type="submit" class="btn btn-primary mr-2">YES</button>
+                <a class="btn btn-dark" href="{% url 'cash-out-detail' %}">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

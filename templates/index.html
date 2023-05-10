@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+{% comment %} <div class="content-wrapper"> {% endcomment %}
+    {% if request.user.is_authenticated %}
+        {{ user }}
+
+    <!-- body row_1 -->
+    {% include 'body/row_1.html' %}
+
+    <!-- body row_2 -->
+    {% include 'body/row_2.html' %}
+
+    <!-- body row_3 -->
+    {% include 'body/row_3.html' %}
+
+    <!-- body row_4 -->
+    {% comment %} {% include 'body/row_4.html' %} {% endcomment %}
+
+    <!-- body row_5 -->
+    {% include 'body/row_5.html' %}
+
+    <!-- body row_6 -->
+    {% comment %} {% include 'body/row_6.html' %} {% endcomment %}
+
+    {% endif %}
+
+{% comment %} </div> {% endcomment %}
+
+{% endblock content %}

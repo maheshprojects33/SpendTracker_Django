@@ -1,0 +1,43 @@
+{% load static %}
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-center text-break">Transaction History of <br><span style="color: green;">CASH INFLOW</span> </h4>
+                {% for item in cash_in_items %}
+                <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                    <div class="text-md-center text-xl-left">
+                        <h6 class="mb-1">{{item.note|title|truncatechars:40}}</h6>
+                        <h6 class="mb-1">{{item.mode|title}}</h6>
+                        <p class="text-muted mb-0 "><em>Added @ {{item.date}} <br> Updated @ {{item.modified_at}}</em></p>
+                    </div>
+                    <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
+                        <h6 class="font-weight-bold mb-0">Rs. {{item.amount}}</h6>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-center">Transaction History of <br><span style="color: crimson;">CASH OUTFLOW</span> </h4>
+                {% for item in cash_out_items %}
+                <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                    <div class="text-md-center text-xl-left">
+                        <h6 class="mb-1">{{item.remarks|title|truncatechars:40}}</h6>
+                        <h6 class="mb-1">{{item.mode|title}}</h6>
+                        <p class="text-muted mb-0 "><em>Added @ {{item.date}} <br> Updated @ {{item.modified_at}}</em></p>
+                    </div>
+                    <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
+                        <h6 class="font-weight-bold mb-0">Rs. {{item.amount}}</h6>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+</div>
