@@ -227,7 +227,7 @@ class CategoryUpdate(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         category_list = Category.objects.all()
-        if form.cleaned_data["name"] in [category.name for category in category_list]:
+        if form.cleaned_data["name"] not in [category.name for category in category_list]:
             response = super().form_valid(form)
             messages.success(self.request, "Category Has Been Updated Successfully")
             return response
