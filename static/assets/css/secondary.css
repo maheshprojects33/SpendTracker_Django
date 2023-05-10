@@ -1,0 +1,33 @@
+.delete-confirmation{
+    color: firebrick;
+}
+
+.my_balance_col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my_balance_level{
+    color: lawngreen;
+}
+
+.my_balance_high{
+    color: red;
+}
+
+.my_balance_p_msg{
+    color: limegreen; 
+    text-align: center;
+}
+
+.my_balance_n_msg{
+    color: indianred; 
+    text-align: center;
+}
+
+.my_balance_mtext{
+    font-size: larger;
+}
+
+

@@ -10,11 +10,14 @@
                         <div class="d-flex align-items-center align-self-start">
 
                             <h3 class="mb-0">Rs. {{total_cash_in}}</h3>
-                            {% if balance >= 0 %}
+
+                            <!-- Enable If You Want To Add Small Balance Below Arrow-->
+
+                            {% comment %} {% if balance >= 0 %}
                             <p class="text-success ml-2 mb-0 font-weight-medium">+{{ balance }}</p>
                             {% else %}
                             <p class="text-danger ml-2 mb-0 font-weight-medium">{{ balance }}</p>
-                            {% endif %}
+                            {% endif %} {% endcomment %}
                         </div>
                     </div>
                     <div class="col-3">
@@ -86,30 +89,25 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-12" style="display: flex; justify-content: center; align-items: center;">
+                    <div class="col-12 my_balance_col">
                         <div class="d-flex align-items-center align-self-start mx-auto">
                             {% if balance > 0 %}
-                            <h3 class="mb-0" style="color: lawngreen;">Rs. {{balance}}</h3>
+                            <h3 class="mb-0 my_balance_level">Rs. {{balance}}</h3>
 
                             {% else %}
-                            <h3 class="mb-0" style="color: red;">Rs. {{balance}}</h3>
+                            <h3 class="mb-0 my_balance_high">Rs. {{balance}}</h3>
 
                             {% endif %}
-                            {% comment %} <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
-                            {% endcomment %}
+                            
                         </div>
                     </div>
-                    {% comment %} <div class="col-3">
-                        <div class="icon icon-box-success ">
-                            <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                    </div> {% endcomment %}
+                    
                 </div>
-                <h6 class="text-muted font-weight-normal" style="display: flex; justify-content: center; align-items: center;">Your Total Balance</h6>
+                <h6 class="text-muted font-weight-normal my_balance_col my_balance_mtext">Your Total Balance</h6>
                 {% if balance >= 0 %}
-                <h5 style="color: limegreen; text-align: center;">Kudos for being mindful of your expenses</h5>
+                <h5 class="my_balance_p_msg">Kudos for being mindful of your expenses</h5>
                 {% else %}
-                <h5 style="color: indianred; text-align: center;">Control Your Spending to balance your budget</h5>
+                <h5 class="my_balance_n_msg">Control Your Spending to balance your budget</h5>
                 {% endif %}
             </div>
         </div>

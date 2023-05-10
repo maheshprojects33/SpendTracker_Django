@@ -2,8 +2,6 @@
 {% load static %}
 {% block content %}
 
-
-
 <div class="row ">
     <div class="col-12 grid-margin">
         <div class="card">
@@ -36,7 +34,7 @@
                             <tr>
                                 <td> {{item.date}} </td>
 
-                                <td> {{item.remarks|title}} </td>
+                                <td> {{item.remarks|title|truncatechars:25}} </td>
 
                                 <td> Rs. {{item.amount}} </td>
                                 <td style="text-align: center;"> {{item.pay_to|title}} <br><br> {{item.mode|title}}
