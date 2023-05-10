@@ -2,19 +2,18 @@
 {% load static %}
 {% block content %}
 
-
-
 <div class="row ">
     <div class="col-12 grid-margin">
         <div class="card">
             <div class="card-body">
                 {% if messages %}
                 {% for message in messages %}
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    {{message}}
-                </div>
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span>
+                        </button>
+                        {{message}}
+                    </div>
                 {% endfor %}
                 {% endif %}
                 <h3 class="card-title" style="text-align: center;">Cash Inflow / All Transactions </h3>
@@ -36,7 +35,7 @@
                             <tr>
                                 <td> {{item.date}} </td>
 
-                                <td> {{item.note|title|truncatechars:25}} </td>
+                                <td class="wrapped-cell"> {{item.note|title}} </td>
 
                                 <td> Rs. {{item.amount}} </td>
                                 <td style="text-align: center;"> {{item.type|title}} <br><br> {{item.mode|title}}
@@ -97,3 +96,26 @@ line-height: 56px;
 
 
 {% endblock extra_css %}
+
+{% comment %} {% block extra_js %}
+
+<script>
+$(document).ready(function() {
+  var floatingButton = $('#floating-button');
+  var floatingButtonOffset = floatingButton.offset();
+  var floatingButtonTop = floatingButtonOffset.top;
+
+  $(window).scroll(function() {
+    var scrollTop = $(window).scrollTop();
+    var windowHeight = $(window).height();
+    var newTop = scrollTop + windowHeight - floatingButton.outerHeight() - 3;
+    if (newTop < floatingButtonTop) {
+      floatingButton.css('top', newTop);
+    } else {
+      floatingButton.css('top', floatingButtonTop);
+    }
+  });
+});
+</script>
+
+{% endblock extra_js %} {% endcomment %}

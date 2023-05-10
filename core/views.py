@@ -17,6 +17,7 @@ from django.conf import settings
 
 
 from django.db.models import Sum
+import locale
 
 
 class HomeView(LoginRequiredMixin, ListView):
@@ -34,15 +35,24 @@ class HomeView(LoginRequiredMixin, ListView):
 
         # To get total of amount from model=CashIn => amount of loggedin user
         total = self.get_queryset().aggregate(Sum("amount")).get("amount__sum") or 0
-        context["total_cash_in"] = total
+        # To format total returned value in Lakh
+        locale.setlocale(locale.LC_ALL, 'en_IN')
+        formatted_total = locale.format_string('%d', total, grouping=True)
+        context["total_cash_in"] = formatted_total
 
         # To get total of amount from model=CashOut => amount of loggedin user
         cash_out_total = self.get_cash_out_total()
-        context["total_cash_out"] = cash_out_total
+        # To format total returned value in Lakh
+        locale.setlocale(locale.LC_ALL, 'en_IN')
+        formatted_cash_out_total = locale.format_string('%d', cash_out_total, grouping=True)
+        context["total_cash_out"] = formatted_cash_out_total
 
         # To get the remaining balnce from cash-in and cash-out
         balance = total - cash_out_total
-        context["balance"] = balance
+        # To format total returned value in Lakh
+        locale.setlocale(locale.LC_ALL, 'en_IN')
+        formatted_balance = locale.format_string('%d', balance, grouping=True)
+        context["balance"] = formatted_balance
 
         # To get transaction histroy of Cash-in
         context["cash_in_items"] = CashIn.objects.all().order_by(

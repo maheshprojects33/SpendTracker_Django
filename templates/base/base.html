@@ -94,12 +94,17 @@
     <script src="{% static 'assets/js/dashboard.js' %}"></script>
     <!-- End custom js for this page -->
 
+    {% block extra_js %}
+    
+    {% endblock extra_js %}
+
     <script>
         setTimeout(function () {
             let alert = document.querySelector('.alert');
             alert.style.display = 'none';
         }, 3000);
     </script>
+    
 </body>
 
 </html>

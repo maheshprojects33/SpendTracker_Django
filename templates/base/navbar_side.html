@@ -59,11 +59,13 @@
     </li>
 
     <!-- Side Menu Start From Here-->
+    
 
     <li class="nav-item nav-category">
       <span class="nav-link">Navigation</span>
     </li>
-    <li class="nav-item menu-items">
+    
+    <li {% if request.path == '/home/' %} class="nav-item menu-items active" {% endif %} class="nav-item menu-items">
       <a class="nav-link" href="{% url 'home' %}">
         <span class="menu-icon">
           <i class="mdi mdi-speedometer"></i>
@@ -72,7 +74,7 @@
       </a>
     </li>
 
-    <li class="nav-item menu-items">
+    <li {% if request.path == '/cash-in-detail/' %} class="nav-item menu-items active" {% endif %} class="nav-item menu-items">
       <a class="nav-link" href="{% url 'cash-in-detail' %}">
         <span class="menu-icon">
           <i class="mdi mdi-cash-multiple"></i>
@@ -81,7 +83,7 @@
       </a>
     </li>
 
-    <li class="nav-item menu-items">
+    <li {% if request.path == '/cash-out-detail/' %} class="nav-item menu-items active" {% endif %} class="nav-item menu-items">
       <a class="nav-link" href="{% url 'cash-out-detail' %}">
         <span class="menu-icon">
           <i class="mdi mdi-cash-100"></i>
@@ -90,7 +92,7 @@
       </a>
     </li>
 
-    <li class="nav-item menu-items">
+    <li {% if request.path == '/category/' %} class="nav-item menu-items active" {% endif %} class="nav-item menu-items">
       <a class="nav-link" href="{% url 'category' %}">
         <span class="menu-icon">
           <i class="mdi mdi-library-plus"></i>
@@ -100,7 +102,7 @@
     </li>
     
 
-    <li class="nav-item menu-items">
+    <li {% if request.path == '/statement/' %} class="nav-item menu-items active" {% endif %} class="nav-item menu-items">
       <a class="nav-link" href="{% url 'statement' %}">
         <span class="menu-icon">
           <i class="mdi mdi-note-text"></i>
