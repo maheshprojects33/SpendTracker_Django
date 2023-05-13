@@ -22,5 +22,8 @@ urlpatterns = [
     path("category/", views.CategoryView.as_view(), name="category"),
     path("category-add/", views.CategoryAdd.as_view(), name="category-add"),
     path("category-update/<int:pk>/", views.CategoryUpdate.as_view(), name="category-update"),
-    path("category-delete/<int:pk>/", views.CategoryDelete.as_view(), name="category-delete")
+    path("category-delete/<int:pk>/", views.CategoryDelete.as_view(), name="category-delete"),
+
+    path('calculator/', views.CalculatorView.as_view(), name='calculator'),
+    path('todo/', views.TodoView.as_view(), name='todo'),
 ]

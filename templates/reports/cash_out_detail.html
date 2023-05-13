@@ -22,7 +22,7 @@
                             <tr>
                                 <th class="col-1"> Date </th>
                                 <th class="col-3"> Particulars </th>
-                                <th class="col-2"> Amount </th>
+                                <th class="col-2"> Amount/Category </th>
                                 <th class="col-2" style="text-align: center;"> Payment To/Mode </th>
                                 <th class="col-2"> Modified On </th>
                                 <th class="col-2" style="text-align: center;"> Actions </th>
@@ -36,7 +36,7 @@
 
                                 <td> {{item.remarks|title|truncatechars:25}} </td>
 
-                                <td> Rs. {{item.amount}} </td>
+                                <td> Rs. {{item.amount}} <br><br> {{item.category}} </td>
                                 <td style="text-align: center;"> {{item.pay_to|title}} <br><br> {{item.mode|title}}
                                 </td>
                                 <td> {{item.modified_at}} </td>
@@ -74,6 +74,7 @@
 </div>
 {% endblock content %}
 
+<!-- For Floating Add Button -->
 {% block extra_css %}
 .fixed-action-btn {
 position: fixed;

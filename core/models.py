@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 
-# Create your models here.
+
 class CashIn(models.Model):
     PAYMENT_MODE = [
         ("bank_deposit", "Bank Deposit"),
@@ -25,9 +25,17 @@ class CashIn(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
-
 # 1 user can have only one profile
 # 1 user can add many salary, loan, others
+# 1 user will have 1 category
+# 1 category will have many user
+class Category(models.Model):
+    name = models.CharField(max_length=20)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    
+
+    def __str__(self):
+        return self.name
 
 class CashOut(models.Model):
     PAYMENT_MODE = [
@@ -37,21 +45,12 @@ class CashOut(models.Model):
         ("cheque_pay", "Cheque Pay"),
         ("others", "Others"),
     ]
-
+    
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     amount = models.FloatField()
     pay_to = models.CharField(max_length=128)
     remarks = models.CharField(max_length=128)
     date = models.DateField()
     mode = models.CharField(max_length=10, choices=PAYMENT_MODE, default='phone_pay')
-    category = models.CharField(max_length=20)
-
     modified_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=20, blank=False)
-
-    def __str__(self):
-        return self.name
-    

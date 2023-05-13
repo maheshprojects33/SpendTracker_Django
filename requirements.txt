@@ -1,10 +1,13 @@
 Django==4.2
 Pillow==9.5.0
+python-decouple==3.8
 
-# for cashflow Model ask to add as a user base
-# in Views.py code are repeated on salary, loan and others
-# Which view shold i use ListView or View
-# Uses of ForeignKey ask
+# Which view shold i use ListView or View, Views usage or Function base if not CRUD
+# can i use mix base view like for CURD class and for others Function
+# Uses of ForeignKey ask, how to link the data
+# profile pic changed to default on other views excpet view profile view
 
-# Payment Mode => cash, bank , phone
-# Income Type => slaary, rent other
+
+
+# libgen.rs for downloading any books
+# django 4 by example read this book

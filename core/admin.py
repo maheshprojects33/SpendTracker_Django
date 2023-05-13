@@ -4,7 +4,7 @@ from .models import *
 # Register your models here.
 
 class CashInAdmin(admin.ModelAdmin):
-    list_display = ['user', 'amount', 'note', 'date', 'modified_at']
+    list_display = ['user', 'amount', 'type', 'mode', 'note', 'date', 'modified_at']
 
 admin.site.register(CashIn, CashInAdmin)
 
@@ -13,4 +13,6 @@ class CashOutAdmin(admin.ModelAdmin):
     
 admin.site.register(CashOut, CashOutAdmin)
     
-admin.site.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'user']
+admin.site.register(Category, CategoryAdmin)

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-51&#br_588dotvdvk_f3k((ty^i55za282ewc+n13mtr4b)z$a'
+SECRET_KEY = config('MY_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -131,3 +132,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+# PASSWORD_RESET_TEMPLATE_NAME = 'accounts/password_reset_mail.html'
+# PASSWORD_RESET_SUBJECT_TEMPLATE_NAME = 'accounts/password_reset_subject.txt'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config('MY_EMAIL_HOST')
+EMAIL_PORT = config('MY_EMAIL_PORT')
+EMAIL_USE_TLS = config('MY_EMAIL_USE_TLS', cast=bool)
+EMAIL_HOST_USER = config('MY_EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('MY_EMAIL_HOST_PASSWORD')

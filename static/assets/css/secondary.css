@@ -2,7 +2,8 @@
     color: firebrick;
 }
 
-.my_balance_col{
+/* my_balance_col */
+.my-center{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,12 +31,12 @@
     font-size: larger;
 }
 
-.wrapped-cell {
+/* .wrapped-cell {
   white-space: normal;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
   -ms-word-break: break-all;
-}
+} */
 
 

@@ -13,5 +13,6 @@ class UserAdmin(admin.ModelAdmin):
 
 admin.site.register(User, UserAdmin)
 
-
-
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['profile', 'profile_pic', 'gender', 'mobile', 'address' ]
+admin.site.register(Profile, ProfileAdmin)

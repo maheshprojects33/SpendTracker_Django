@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-12 grid-margin stretch-card" style="color: aquamarine;">
+    <h1>Profile</h1>
+</div>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+
+            <form class="forms-sample" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{form.as_p}}
+
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <a class="btn btn-dark" href="{% url 'cash-out-detail' %}">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

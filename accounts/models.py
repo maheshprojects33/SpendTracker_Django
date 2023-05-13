@@ -30,10 +30,11 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True)
     full_name = models.CharField(max_length=40)
-    email_token = models.CharField(max_length=255, null=True, blank=True)
-    forget_password = models.CharField(max_length=255, null=True, blank=True)
-    last_login = models.DateTimeField(auto_now=True,null=True, blank=True)
-    last_logout = models.DateTimeField(auto_now=True,null=True, blank=True)
+    email_token = models.CharField(max_length=255, blank=True)
+    forget_password = models.CharField(max_length=255, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_login = models.DateTimeField(auto_now=True)
+    last_logout = models.DateTimeField(auto_now=True)
     is_verified = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -48,3 +49,14 @@ class User(AbstractUser):
         return self.email
 
 
+class Profile(models.Model):
+    GENDER_CHOICE = [
+        ('male', 'Male'),
+        ('female', 'Female'),
+        ('other', 'Other'),
+    ]
+    profile_pic = models.ImageField(upload_to='profile/', blank=True)
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICE, default='male')
+    mobile = models.CharField(max_length=15, blank=True)
+    address = models.TextField(blank=True)
+    profile = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,blank=True, null=True)

@@ -33,6 +33,7 @@ class CashOutFlowForm(forms.ModelForm):
     class Meta:
         model = CashOut
         fields = ["amount", "mode", "pay_to", "category", "remarks", "date"]
+
         widgets = {
             "date": forms.DateInput(
                 attrs={"type": "date", "class": "form-control", "format": "%d %b %Y"}
@@ -41,21 +42,22 @@ class CashOutFlowForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
         self.fields["amount"].widget.attrs.update({"class": "form-control"})
         self.fields["mode"].widget.attrs.update({"class": "form-control"})
         self.fields["pay_to"].widget.attrs.update({"class": "form-control"})
-        self.fields["category"].widget.attrs.update({"class": "form-control custom-select"})
         self.fields["pay_to"].label = "Pay To"
         self.fields["mode"].label = "Payment Mode"
 
+        self.fields["category"].widget.attrs.update({"class": "form-control"})
+        # self.fields["category"].initial = Category(user = self.request.user)
+
         self.fields["remarks"].widget.attrs.update({"class": "form-control"})
+
         self.fields["date"].initial = datetime.date.today()
 
 
 class CategoryAddForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = "__all__"
-        
-    
-    
+        fields = ["name"]

@@ -1,5 +1,6 @@
 {% load static %}
 
+<!--Top Left Logo Brand-->
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
     <a class="sidebar-brand brand-logo" href="{% url 'home' %}"
@@ -7,33 +8,45 @@
     <a class="sidebar-brand brand-logo-mini" href="{% url 'home' %}"
       style="color: wheat; font-family: Noto Serif; font-weight: bold; text-decoration: none;">ST</a>
   </div>
+
+  <!-- Nav Bar Started-->
   <ul class="nav">
     <li class="nav-item profile">
       <div class="profile-desc">
         <div class="profile-pic">
           <div class="count-indicator">
-            <img class="img-xs rounded-circle " src="{% static 'assets/images/faces/face15.jpg' %}" alt="">
+
+            <!-- Profile Picture -->
+            {% if profile.profile_pic.url %}
+            <img class="img-xs rounded-circle " src="{{profile.profile_pic.url}}" alt="Profile_Picture">
+            {% else %}
+            <img class="img-xs rounded-circle " src="{% static 'assets/images/faces/profile_male1.jpg' %}" alt="Profile_Picture">
+            {% endif %}
             <span class="count bg-success"></span>
           </div>
+
+          <!-- Profile Name -->
           <div class="profile-name">
-            <h5 class="mb-0 font-weight-normal">Mahesh Dangol</h5>
-            <span>Gold Member</span>
+            <h5 class="mb-0 font-weight-normal">{{request.user.full_name|title}}</h5>
           </div>
         </div>
         <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
         <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
-          <a href="#" class="dropdown-item preview-item">
+          
+          <!-- MENUS -->
+          <a href="{% url 'profile-add' %}" class="dropdown-item preview-item">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
-                <i class="mdi mdi-settings text-primary"></i>
+              <i class="mdi mdi-settings text-primary"></i>
               </div>
             </div>
             <div class="preview-item-content">
-              <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
+              <p class="preview-subject ellipsis mb-1 text-small">Add Profile</p>
             </div>
           </a>
+          
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item preview-item">
+          <a href="{% url 'password_reset' %}" class="dropdown-item preview-item">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
                 <i class="mdi mdi-onepassword  text-info"></i>
@@ -43,17 +56,7 @@
               <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
             </div>
           </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <div class="preview-icon bg-dark rounded-circle">
-                <i class="mdi mdi-calendar-today text-success"></i>
-              </div>
-            </div>
-            <div class="preview-item-content">
-              <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
-            </div>
-          </a>
+          
         </div>
       </div>
     </li>
@@ -97,7 +100,7 @@
         <span class="menu-icon">
           <i class="mdi mdi-library-plus"></i>
         </span>
-        <span class="menu-title">Add Category</span>
+        <span class="menu-title">Your Category</span>
       </a>
     </li>
     
@@ -112,7 +115,7 @@
     </li>
 
     <li class="nav-item menu-items">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="{% url 'todo' %}">
         <span class="menu-icon">
           <i class="mdi mdi-calendar-check"></i>
         </span>
@@ -121,7 +124,7 @@
     </li>
 
     <li class="nav-item menu-items">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="{% url 'calculator' %}">
         <span class="menu-icon">
           <i class="mdi mdi-calculator"></i>
         </span>

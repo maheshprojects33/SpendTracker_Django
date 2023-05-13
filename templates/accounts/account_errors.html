@@ -1,3 +1,9 @@
+<script>
+    setTimeout(function () {
+        let alert = document.querySelector('.alert');
+        alert.style.display = 'none';
+    }, 3000);
+</script>
 {% if messages %}
 {% for message in messages %}
 <div class="alert alert-success alert-dismissible" role="alert">

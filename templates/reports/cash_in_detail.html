@@ -75,7 +75,9 @@
 </div>
 {% endblock content %}
 
+<!-- For Floating Add Button -->
 {% block extra_css %}
+
 .fixed-action-btn {
 position: fixed;
 right: 50px;
@@ -97,25 +99,3 @@ line-height: 56px;
 
 {% endblock extra_css %}
 
-{% comment %} {% block extra_js %}
-
-<script>
-$(document).ready(function() {
-  var floatingButton = $('#floating-button');
-  var floatingButtonOffset = floatingButton.offset();
-  var floatingButtonTop = floatingButtonOffset.top;
-
-  $(window).scroll(function() {
-    var scrollTop = $(window).scrollTop();
-    var windowHeight = $(window).height();
-    var newTop = scrollTop + windowHeight - floatingButton.outerHeight() - 3;
-    if (newTop < floatingButtonTop) {
-      floatingButton.css('top', newTop);
-    } else {
-      floatingButton.css('top', floatingButtonTop);
-    }
-  });
-});
-</script>
-
-{% endblock extra_js %} {% endcomment %}
