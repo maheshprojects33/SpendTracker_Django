@@ -13,9 +13,11 @@ from .forms import *
 
 from django.urls import reverse_lazy as _
 
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 # Signu, Login and Logout View
-# SIGN-UP 
+# SIGN-UP
 class SignupView(CreateView):
     form_class = SignupForm
     success_url = _("login")
@@ -25,8 +27,11 @@ class SignupView(CreateView):
         # Save the form data to the database
         response = super().form_valid(form)
         form.save()
+        
         messages.success(self.request, "Account Created")
         return response
+
+
 # LOGIN => Its a Funcation base view case Class base view not working ASK SIR ABOUT THIS
 def login_user(request):
     form = LoginForm
@@ -44,6 +49,8 @@ def login_user(request):
             return redirect("login")
 
     return render(request, "accounts/login.html", {"form": form})
+
+
 # LOG-OUT
 class LogoutView(LogoutView):
     next_page = _("login")
@@ -59,6 +66,7 @@ class ProfileView(LoginRequiredMixin, View):
         context = {"profiles": profiles}
         return render(self.request, self.template_name, context)
 
+
 # CRUD Operation for User Profile
 # CREATE
 class ProfileAdd(LoginRequiredMixin, CreateView):
@@ -70,14 +78,21 @@ class ProfileAdd(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         try:
             profile = Profile.objects.get(profile=self.request.user)
-            messages.info(self.request, "You already have a profile. Please update it to make any changes")
-            return redirect('profile-view')
+            messages.info(
+                self.request,
+                "You already have a profile. Please update it to make any changes",
+            )
+            return redirect("profile-view")
         except Profile.DoesNotExist:
             profile = form.save(commit=False)
             profile.profile = self.request.user
             profile.save()
-            messages.success(self.request, "Your New Profile Has Been Created Successfully")
+            messages.success(
+                self.request, "Your New Profile Has Been Created Successfully"
+            )
             return super().form_valid(form)
+
+
 # UPDATE
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
     model = Profile
@@ -89,9 +104,6 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
         response = super().form_valid(form)
         messages.success(self.request, "Your Profile Has Been Updated Successfully")
         return response
-
-    
-
 
 
 # class LoginView(View):

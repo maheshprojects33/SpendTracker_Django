@@ -24,11 +24,11 @@ class CashInFLowForm(forms.ModelForm):
         self.fields["mode"].label = "Income Mode"
 
         self.fields["date"].initial = datetime.date.today()
-        # self.fields['type'].label = 'Salary Type'
 
 
 class CashOutFlowForm(forms.ModelForm):
-    category = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label=None)
+    # category = forms.ChoiceField()
+    category = forms.ModelChoiceField(queryset=Category.objects.all())
 
     class Meta:
         model = CashOut
@@ -42,21 +42,21 @@ class CashOutFlowForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['category'].initial = Category.objects.first()
 
-        self.fields["amount"].widget.attrs.update({"class": "form-control"})
+        self.fields["amount"].widget.attrs.update({"class": "form-control", "placeholder": "Enter Your Payment Amount"})
         self.fields["mode"].widget.attrs.update({"class": "form-control"})
-        self.fields["pay_to"].widget.attrs.update({"class": "form-control"})
+        self.fields["pay_to"].widget.attrs.update({"class": "form-control", "placeholder": "Enter Whom To Pay"})
+        self.fields["category"].widget.attrs.update({"class": "form-control"})
+        self.fields["remarks"].widget.attrs.update({"class": "form-control", "placeholder": "Enter Your Remarks For Your Payment"})
         self.fields["pay_to"].label = "Pay To"
         self.fields["mode"].label = "Payment Mode"
 
-        self.fields["category"].widget.attrs.update({"class": "form-control"})
-        # self.fields["category"].initial = Category(user = self.request.user)
-
-        self.fields["remarks"].widget.attrs.update({"class": "form-control"})
+        self.fields['category'].help_text = "If You Haven't Created Your Category Yet Click on "
 
         self.fields["date"].initial = datetime.date.today()
-
-
+    
+   
 class CategoryAddForm(forms.ModelForm):
     class Meta:
         model = Category

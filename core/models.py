@@ -46,6 +46,7 @@ class CashOut(models.Model):
         ("others", "Others"),
     ]
     
+    
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     amount = models.FloatField()

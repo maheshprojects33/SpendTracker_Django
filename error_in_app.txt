@@ -1,3 +1,11 @@
 1. Account login with class base is not working
-2. All user's Category are displayed
-3. Can't define default category list of shopping, gift, food
+2. All user's Category are displayed in cash out form
+3. Can't define default category list of shopping, gift, food in category list
+4. profile picture not displaying properly
+5. searching logics no idea at all
+6. can reset password only one time after that it say password already reset
+
+
+leetcode.com
+
+geeksforgeeks.org

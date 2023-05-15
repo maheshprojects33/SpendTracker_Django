@@ -7,6 +7,15 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
 
             <form class="forms-sample" method="POST">
                 {% csrf_token %}

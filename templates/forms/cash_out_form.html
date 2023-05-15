@@ -7,17 +7,72 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
 
-            <form class="forms-sample" method="POST">
+            {% comment %} <form class="forms-sample" method="POST">
                 {% csrf_token %}
 
                 {{form.as_p}}
 
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                 <a class="btn btn-dark" href="{% url 'cash-out-detail' %}">Cancel</a>
+            </form> {% endcomment %}
+
+            <form class="forms-sample" method="POST">
+                {% csrf_token %}
+
+                <p>
+                    <label for="{{form.amount.id_for_label}}">{{form.amount.label}}:</label>
+                    {{form.amount}}
+                    <div style="color: brown;">{{form.amount.errors}}</div>
+                </p>
+                <p>
+                    <label for="{{form.mode.id_for_label}}">{{form.mode.label}}:</label>
+                    {{form.mode}} 
+                </p>
+                <p>
+                    <label for="{{form.pay_to.id_for_label}}">{{form.pay_to.label}}:</label>
+                    {{form.pay_to}}
+                </p>
+                <p>
+                    <label for="{{form.category.id_for_label}}">{{form.category.label}}:</label>
+                    <select name="{{form.category.name}}" class="form-control" id="{{form.category.id_for_label}}">
+                        {% for category in categories %}
+                        <option value="{{category.id}}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <span style="color: cornflowerblue;">{{form.category.help_text}}</span> <a href="{% url 'category' %}" style="text-decoration: none;">ADD NEW CATEGORY</a> <span style="color: cornflowerblue;">e.g. 'Shopping', 'Food', 'Groceries'</span>
+                </p>
+                <p>
+                    <label for="{{form.remarks.id_for_label}}">{{form.remarks.label}}:</label>
+                    {{form.remarks}}
+                </p>
+                <p>
+                    <label for="{{form.date.id_for_label}}">{{form.date.label}}:</label>
+                    {{form.date}}
+                </p>
+
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <a class="btn btn-dark" href="/cash-out-detail/">Cancel</a>
             </form>
         </div>
     </div>
 </div>
 
 {% endblock content %}
+{% comment %} <p>
+    <label for="id_category">Category:</label>
+    <select name="category" class="form-control" id="id_category">
+        {% for category in categories %}
+        <option value="{{category.id}}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+</p> {% endcomment %}

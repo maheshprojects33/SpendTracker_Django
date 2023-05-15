@@ -2,7 +2,7 @@
 
 <nav class="navbar p-0 fixed-top d-flex flex-row">
     <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo-mini" href="/"
+        <a class="navbar-brand brand-logo-mini" href="{% url 'home' %}"
             style="color: wheat; font-family: Noto Serif; font-weight: bold; text-decoration: none;">ST</a>
     </div>
     <!-- MENU ICON -->
@@ -67,34 +67,33 @@
                 </a>
             </li>
             <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" href="{% url 'calculator' %}" 
-                    aria-expanded="false">
-                    <i class="mdi mdi mdi-calculator"></i>
-                </a>
-            </li>
+                <a class="nav-link" href="{% url 'calculator' %}" 
+                aria-expanded="false">
+                <i class="mdi mdi mdi-calculator"></i>
+            </a>
             <li class="nav-item dropdown border-left">
-                <a class="nav-link count-indicator dropdown-toggle" href="#">
+                <a class="nav-link" href="#">
                     <i class="mdi mdi-bell"></i>
                 </a>
             </li>
-
+        </li>
+        
             <!-- Profile Picture -->
             <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                     <div class="navbar-profile">
                                                 
-                        {% if user.is_authenticated %}
-                            {% for profile in profiles %}
-                        <img class="img-xs rounded-circle" src="{{profile.profile_pic.url}}" alt="profile_picture">
-                            {% endfor %}
+                        {% if user.profile.profile_pic %}
+                        <img class="img-xs rounded-circle" src="{{user.profile.profile_pic.url}}" alt="profile_picture">
                         {% else %}
+                            {% if user.profile.gender == "female" %}
+                        <img class="img-xs rounded-circle" src="{% static 'assets/images/faces/profile_female.png' %}" alt="profile_picture">
+                            {% else %}
                         <img class="img-xs rounded-circle" src="{% static 'assets/images/faces/profile_male1.jpg' %}" alt="profile_picture">
+                            {% endif %}
                         {% endif %}
                         
                         <p class="mb-0 d-none d-sm-block navbar-profile-name">{{user.full_name}}</p>
-                        {% comment %} <img class="img-xs rounded-circle" src="{% static 'assets/images/faces/profile_male1.jpg' %}" alt="profile_picture"> {% endcomment %}
-                        {% comment %} <p class="mb-0 d-none d-sm-block navbar-profile-name">{{request.user.full_name|title}}</p> {% endcomment %}
-                        {% comment %} <p class="mb-0 d-none d-sm-block navbar-profile-name">Full Name</p> {% endcomment %}
                         <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                     </div>
                 </a>
