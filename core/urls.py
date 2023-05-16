@@ -25,7 +25,10 @@ urlpatterns = [
     path("category-delete/<int:pk>/", views.CategoryDelete.as_view(), name="category-delete"),
     
     path("search/", views.SearchView.as_view(), name="search"),
+    path("filter/", views.FilterView.as_view(), name="filter"),
 
     path('calculator/', views.CalculatorView.as_view(), name='calculator'),
     path('todo/', views.TodoView.as_view(), name='todo'),
+    
+    path('feedback/', views.FeedbackView.as_view(), name='feedback'),
 ]

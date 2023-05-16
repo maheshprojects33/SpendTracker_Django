@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          <h2 class="card-title" style="text-align: center;">"Feedback & Support"</h2>
+
+          <p style="text-align: center; line-height: 2; font-size: large;">"Your <span style="font-style: italic; color: chocolate;"> feedback </span> is <span style="font-style: italic; color: chocolate;"> valuable </span> to me! <br>If you have any <span style="font-style: italic; color: chocolate;">comments, suggestions, or concerns </span> about my app, or if you come across any <span style="font-style: italic; color: chocolate;">issues or bugs</span>, I'm here to assist you. Please <span style="font-style: italic; color: chocolate;">don't hesitate</span> to reach me out by emailing me at <span style="color: darkgoldenrod; font-weight: bolder;"> mahesh.projects33@gmail.com </span> <br>I appreciate your input and will personally address your inquiries to improve your experience with my app."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

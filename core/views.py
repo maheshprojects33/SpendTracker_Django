@@ -15,9 +15,10 @@ from .models import CashIn
 from django.contrib import messages
 from django.conf import settings
 
-
+from django.db.models import Q
 from django.db.models import Sum
 import locale
+
 
 
 # Home View
@@ -320,16 +321,60 @@ class Statement(HomeView):
 
 
 # Search Logics
-class SearchView(LoginRequiredMixin, View):
-    pass
+class SearchView(LoginRequiredMixin, ListView):
+    template_name = 'search/search.html'
+    context_object_name = 'search'
 
+    def get_queryset(self):
+        
+        search_query = self.request.GET.get('search-item')
+
+        if search_query:
+
+            queryset = {
+                'cash_in': CashIn.objects.filter(Q(user=self.request.user) &
+                                                (
+                                                Q(type__icontains=search_query) |
+                                                Q(mode__icontains=search_query) |
+                                                Q(note__icontains=search_query) |
+                                                Q(amount__contains=search_query)
+                                                )),
+                'cash_out': CashOut.objects.filter(Q(user=self.request.user) &
+                                                   (
+                                                    Q(mode__icontains=search_query) |
+                                                    Q(pay_to__icontains=search_query) |
+                                                    Q(remarks__icontains=search_query) |
+                                                    Q(category__name__contains=search_query) |
+                                                    Q(amount__contains=search_query)
+                                                    ))
+                                                
+            }
+        else:
+            queryset = {
+                'cash_in': CashIn.objects.none(),
+                'cash_out': CashOut.objects.none()
+            }
+
+        return queryset
+
+
+
+# This will be added later
+# Filter Logics
+class FilterView(LoginRequiredMixin, TemplateView):
+    template_name = 'search/filter_form.html'
 
 # This will be added later
 # Calculator
 class CalculatorView(LoginRequiredMixin, TemplateView):
     template_name = "calculator/calculator.html"
 
-
+# This will be added later
 # Todo
 class TodoView(LoginRequiredMixin, TemplateView):
     template_name = "todo/todo.html"
+
+
+# Feedback and Support
+class FeedbackView(LoginRequiredMixin, TemplateView):
+    template_name = 'feedback/feedback.html'
